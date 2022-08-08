@@ -31,8 +31,9 @@ GOOD REFERENCES FOR LEARNING:
 https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
 - a lead-in of 0158 and 00AC, each multiplied by 1,000,000/freq yields
 - a 9000 and 4500 as it is stated in the reference (but in millisecond format)
-- the lead out is 0015 and 38A4 yields a pair of value near the reference's
-- target value pair 562 and 1687. IR receiver tolerates a little offset.
+- the lead out is 0015 and 38A4 yields 549 (for 0015 * 1,000,000/38222) near the reference's
+- target value 562 and an optional rest of 379,362 from 38A4. The reason 549 is still accepted by 
+  IR receivers is because it tolerates little offsets.
 - For the middle part, for ex.
 - you have 01FE C03F as device addr and cmd code
 - it is sent to IR receiver as 
