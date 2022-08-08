@@ -44,7 +44,7 @@ Not Reverse: (This works in my case)
 - 11000000 00111111
 
 Reverse (based on resources but didnt work for me, 
-you can try by setting isReverse to false in the RemoteButton class )
+you can try by setting isReverse to true in the RemoteButton class )
 - 10000000 01111111  
 - 00000011 11111100 
 
