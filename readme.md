@@ -25,14 +25,14 @@ Example, given is 50, then FF minus 50 = AF.
 For most device address, parts are complementary (sum=FF) but some are exceptions
 For ex. our TV has device address 00FE yet 00+FE != FF
 
-The projects remote frequency is in 38222 Hz skl you can edit it.
+The projects remote frequency is in 38222 Hz skl you can edit it to 38000 etc. but 38222 is optimal freq.
 
 GOOD REFERENCES FOR LEARNING:
 https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
 - a lead-in of 0158 and 00AC, each multiplied by 1,000,000/freq yields
-- a 9000 and 4500 as it is stated in the reference (but in millisecond format)
-- the lead out is 0015 and 38A4 yields 549 (for Hex 0015 * Dec 1,000,000/38222) near the reference's
-- target value 562 and an optional rest of 379,362 from 38A4. The reason 549 is still accepted by 
+- a 9000 microsecond pulse and 4500 microsecond rest as it is stated in the reference (but in millisecond format)
+- the lead out is 0015 and 38A4 yields decimal 549 (for Hex 0015 x Dec 1,000,000/38222) near the reference's
+- target value 562 and an optional rest of 379,362 microseconds from (Hex 38A4 x Dec 1,000,000/38222). The reason 549 is still accepted by 
   IR receivers is because it tolerates little offsets.
 - For the middle part, for ex.
 - you have 01FE C03F as device addr and cmd code
@@ -52,6 +52,8 @@ you can try by setting isReverse to true in the RemoteButton class )
 - but each bits (binary digits) is translated to pairs of milliseconds in the int[] array rawIRpattern.
 - if 0 then its 562 562
 - if 1 then its 562 1687
+-                ^    ^
+-               pulse,rest in microseconds
 
 http://www.remotecentral.com/features/irdisp1.htm // page 1
 http://www.remotecentral.com/features/irdisp4.htm // page 4 about NEC format
