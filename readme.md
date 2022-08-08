@@ -16,7 +16,7 @@ You need a tested and working NEC Code (there are IR Finder apps available to
 know what codes work) or the hard way (use this project's backend to make your 
 own IR Finder HAHA).
 
-NEC IR Code has 2 parts DEVICE ADDRESS (e.g. "00FE") and COMMAND CODE (e.g. "50AF").
+NEC IR Code has 2 parts DEVICE ADDRESS (example, "00FE") and COMMAND CODE (example, "50AF").
 You pass these two arguments to my RemoteButton class NEC converter then it will
 return int[] pattern you needed for IR transmit() method.
 If you happen to have only a half of the command code. 
@@ -41,11 +41,11 @@ https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
 - 00000011 11111100 
 - take note parts are sent in reverse order of bits instead of 00000001 for hex 1, its 10000000
 - 
-- but each bits is translated to pairs of milliseconds in the int[] array
+- but each bits is translated to pairs of milliseconds in the int[] array rawIRpattern.
 - if 0 then its 562 562
 - if 1 then its 562 1687
 
 http://www.remotecentral.com/features/irdisp1.htm // page 1
 http://www.remotecentral.com/features/irdisp4.htm // page 4 about NEC format
-- This also contains a good explanation, it has 4 pages don't overlook the other pages. 
+- This also contains a good explanation in a not-so complicated language, it has 4 pages don't overlook the other pages. 
 
