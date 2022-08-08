@@ -29,12 +29,12 @@ The projects remote frequency is in 38222 Hz skl you can edit it to 38000 etc. b
 
 GOOD REFERENCES FOR LEARNING:
 https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
-- a lead-in of 0158 and 00AC, each multiplied by 1,000,000/freq yields
+- the CONSTANT lead-in of 0158 and 00AC, each multiplied by 1,000,000/freq yields to convert it to microseconds we need in int[] pattern
 - a 9000 microsecond pulse and 4500 microsecond rest as it is stated in the reference (but in millisecond format)
-- the lead out is 0015 and 38A4 yields decimal 549 (for Hex 0015 x Dec 1,000,000/38222) near the reference's
+- the CONSTANT lead out is 0015 and 38A4 yields decimal 549 (for Hex 0015 x Dec 1,000,000/38222) near the reference's
 - target value 562 and an optional rest of 379,362 microseconds from (Hex 38A4 x Dec 1,000,000/38222). The reason 549 is still accepted by 
-  IR receivers is because it tolerates little offsets.
-- For the middle part, for ex.
+  IR receivers is because it tolerates little offsets +/-100?.
+- For the important middle part between lead in and lead out, for ex.
 - you have 01FE C03F as device addr and cmd code
 
 - 2 ways that it can be sent to IR receiver as 
@@ -43,8 +43,8 @@ Not Reverse: (This works in my case)
 - 00000001 11111110
 - 11000000 00111111
 
-Reverse (based on resources but didnt work for me, 
-you can try by setting isReverse to true in the RemoteButton class )
+Reverse (based on resources but didnt work for me, maybe because I use LeftPadding for both ways
+you can try by setting isReverse to true in the RemoteButton class, )
 - 10000000 01111111  
 - 00000011 11111100 
 
