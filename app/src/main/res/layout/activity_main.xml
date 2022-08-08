@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,14 +8,14 @@
 
     <Button
         android:id="@+id/btnDecrypt"
-        android:layout_width="80sp"
+            android:layout_width="80sp"
         android:layout_height="80sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10sp"
         android:layout_marginTop="10sp"
         android:layout_marginEnd="10sp"
-        android:layout_marginBottom="40sp"
+        android:layout_marginBottom="20sp"
         android:alpha="0.4"
         tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
@@ -79,3 +77,329 @@
 
 </RelativeLayout>
 
+<!--
+    <?xml version="1.0" encoding="utf-8"?>
+
+<GridLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:columnCount="4"
+android:rowCount="6"
+android:paddingTop="10sp">
+
+<Button
+    android:text="ON"
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:text="MUTE"
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:text="VOL+"
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:text="VOL+-"
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+<Button
+    android:layout_width="80sp"
+    android:layout_height="80sp"
+    android:layout_margin="10sp"
+    android:alpha="0.4"
+    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+
+</GridLayout>
+
+    <?xml version="1.0" encoding="utf-8"?>
+
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4"
+    android:rowCount="6"
+    android:paddingTop="10sp">
+
+    <Button
+        android:text="ON"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:text="MUTE"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:text="VOL+"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:text="VOL+-"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+            android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_margin="10sp"
+        android:alpha="0.4"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+
+</GridLayout>

@@ -2,19 +2,26 @@ package com.example.radremote;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class RemoteButton {
-    String necCode;
-    String strRawIrPattern;
-    int[] rawIrPattern;
+    protected String buttonName;
+    protected String necCode;
+    protected String strRawIrPattern;
+    protected int[] rawIrPattern;
+    protected String strFullIrRawInBits;
 
-    static int frequency = 38222;
-    static String leadIn = "0158 00AC ";
-    static String burstPairZero = "0015 0015 ";
-    static String burstPairOne = "0015 0040 ";
-    static String leadOut = "0015 38A4";
+    protected static int frequency = 38222;
+    protected static String leadIn = "0158 00AC ";          // signifies the start of IR pattern
+    protected static String burstPairZero = "0015 0015 ";
+    protected static String burstPairOne = "0015 0040 ";
+    protected static String leadOut = "0015 38A4";          // signifies the end of IR Pattern
 
-    public RemoteButton(String deviceAddress, String commandCode) {
+    public RemoteButton(String buttonName, String deviceAddress, String commandCode) {
+        this.buttonName = buttonName;
         this.necCode = deviceAddress + commandCode;
+        this.strFullIrRawInBits = "";
         rawIrPattern = convertNecToRaw(deviceAddress, commandCode);
     }
 
@@ -22,23 +29,19 @@ public class RemoteButton {
         String unprocessedRawIR = "";
 
         // First Half and Second Half isn't always complementary e.g. device addr: 00FE
-        String deviceAddrFirstHalf = deviceAddress.substring(0, 1);
-        String deviceAddrSecondHalf = deviceAddress.substring(2, 3);
+        String deviceAddrFirstHalf = deviceAddress.substring(0, 2);
+        String deviceAddrSecondHalf = deviceAddress.substring(2, 4);
 
         // First Half and Second Half always add up to 255 or FF
-        String commandCodeFirstHalf = deviceAddress.substring(0, 1);
-        String commandCodeSecondHalf = deviceAddress.substring(2, 3);
+        String commandCodeFirstHalf = commandCode.substring(0, 2);
+        String commandCodeSecondHalf = commandCode.substring(2, 4);
 
-        setStrRawIrPattern(deviceAddrFirstHalf
-                +deviceAddrSecondHalf
-                +commandCodeFirstHalf
-                +commandCodeSecondHalf);
-        /*// Construct full String NEC
+        // Construct full String NEC
         unprocessedRawIR += this.leadIn
-                + convertHexToBurstPairs(deviceAddrFirstHalf)
-                + convertHexToBurstPairs(deviceAddrSecondHalf)
-                + convertHexToBurstPairs(commandCodeFirstHalf)
-                + convertHexToBurstPairs(commandCodeSecondHalf)
+                + convertHexToBurstPairs(deviceAddrFirstHalf,true)
+                + convertHexToBurstPairs(deviceAddrSecondHalf,false)
+                + convertHexToBurstPairs(commandCodeFirstHalf,false)
+                + convertHexToBurstPairs(commandCodeSecondHalf,false)
                 + this.leadOut;
 
         // Adds 0x to each values to signify hex values
@@ -54,35 +57,55 @@ public class RemoteButton {
         for (Object strHex : listData) {
             int valueInt = Integer.decode(String.valueOf(strHex)) * 1000000 / frequency;
             rawIrPattern[i++] = valueInt;
-        }*/
+        }
+        // Returns Raw IR in int type*/
 
-        // Returns Raw IR in int type
+        //setStrRawIrPattern(strFullIrRawInBits);
+        setStrRawIrPattern(String.valueOf(Arrays.toString(rawIrPattern)));
 
-        return new int[]{1,2,3}; //rawIrPattern;
+        return rawIrPattern; //rawIrPattern;
     }
 
-    public String convertHexToBurstPairs(String hexPart) {
+    public String convertHexToBurstPairs(String hexPart, boolean isFirstPart) {
         // Translates NEC String to Raw IR pattern in hex type
         String burstPairs = "";
-        int decValue = Integer.decode(hexPart);
+        int decValue = Integer.decode("0x" + hexPart);
         String binaryString = Integer.toBinaryString(decValue);
-        StringUtils.leftPad(binaryString, 8, '0');
+        binaryString = StringUtils.leftPad(binaryString, 8, '0');
+        strFullIrRawInBits += binaryString + "\n";
 
         char[] binaryCharArr = binaryString.toCharArray();
-        for (int i = binaryCharArr.length - 1; i >= 0; i--) {
-            switch (i) {
-                case '0':
-                    burstPairs += burstPairZero;
-                    break;
-                case '1':
-                    burstPairs += burstPairOne;
+
+        // Sent in Reverse Order e.g. 50 is 01010000 but send in IR as 00001010
+        if (isFirstPart){
+            for (int i = binaryCharArr.length - 1; i >= 0; i--) {
+                switch (binaryCharArr[i]) {
+                    case '0':
+                        burstPairs += burstPairZero;
+                        break;
+                    case '1':
+                        burstPairs += burstPairOne;
+                }
             }
         }
-        setStrRawIrPattern(burstPairs);
+        // Not sent in Reverse Order
+        else {
+            for (int i = 0; i < binaryCharArr.length; i++) {
+                switch (binaryCharArr[i]) {
+                    case '0':
+                        burstPairs += burstPairZero;
+                        break;
+                    case '1':
+                        burstPairs += burstPairOne;
+                }
+            }
+        }
+
         return burstPairs;
     }
 
     public void setStrRawIrPattern(String strRawIrPattern){
         this.strRawIrPattern = strRawIrPattern;
     }
+
 }

@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.hardware.ConsumerIrManager;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected static List listmessage;
     protected static ConsumerIrManager irblaster;
     protected static int irCodesIndex;
+    protected int currentOffTimeHours = 12;
+    protected int currentOffTimeMins = 6;
 
     @Override
     protected void onStart() {
@@ -38,15 +41,42 @@ public class MainActivity extends AppCompatActivity {
             etNotepad = (EditText) findViewById(R.id.etNotepad);
             etMessage = (EditText) findViewById(R.id.etMessage);
             listmessage = new ArrayList<String>();
-            RemoteButton rmt = new RemoteButton("00FE", "50AF");
+            Remote pensonicRemote = new PensonicRemote(); // For Model 2424 or 2244
+
+
             btnDecrypt.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View view) {
-                    try {
-                        etMessage.setText(rmt.strRawIrPattern);
+                    String s = String.valueOf(pensonicRemote.getRemoteButton(1).strRawIrPattern);
+                    //etNotepad.setText(s);
+
+                    String[] commandSequence = {"EXIT", "MENU", "RIGHT", "RIGHT", "DOWN","DOWN","CLICK","DOWN"};
+                    List<String> commandSequenceForChangingOffTime = new ArrayList<String>();
+                    try{
+                        int newOffTimeHours = 21;
+                        int newOffTimeMins = 1;
+
+                        for (String command: commandSequence){
+                            irblaster.transmit(38222, pensonicRemote.getPattern(command));
+                        }
+
+                        int step = getSteps(currentOffTimeHours, newOffTimeHours);
+                        String stepCommand = getStepCommand(step);
+
+                        etNotepad.setText(String.valueOf(step) + " " + stepCommand);
+
+                        while (currentOffTimeHours != newOffTimeHours){
+                            irblaster.transmit(38222, pensonicRemote.getPattern(stepCommand));
+                            currentOffTimeHours += step;
+                        }
+
+                        irblaster.transmit(38222, pensonicRemote.getPattern("EXIT"));
+
+
                     } catch (Exception e){
-                        etMessage.setText(rmt.strRawIrPattern);
+                        etMessage.setText(String.valueOf(e));
+                    } finally {
                     }
                 }
             });
@@ -54,6 +84,20 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e){
             etMessage.setText(String.valueOf(e));
         }
+    }
+
+    public static String getStepCommand(int getSteps){
+        if (getSteps == 1)
+            return "RIGHT";
+        else
+            return "LEFT";
+    }
+
+    public static int getSteps(int oldVal, int newVal){
+        if (oldVal < newVal)
+            return 1;
+        else
+            return -1;
     }
 }
 
