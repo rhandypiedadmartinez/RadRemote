@@ -39,9 +39,9 @@ public class RemoteButton {
         // Construct full String NEC
         unprocessedRawIR += this.leadIn
                 + convertHexToBurstPairs(deviceAddrFirstHalf,true)
-                + convertHexToBurstPairs(deviceAddrSecondHalf,false)
-                + convertHexToBurstPairs(commandCodeFirstHalf,false)
-                + convertHexToBurstPairs(commandCodeSecondHalf,false)
+                + convertHexToBurstPairs(deviceAddrSecondHalf,true)
+                + convertHexToBurstPairs(commandCodeFirstHalf,true)
+                + convertHexToBurstPairs(commandCodeSecondHalf,true)
                 + this.leadOut;
 
         // Adds 0x to each values to signify hex values
@@ -66,7 +66,7 @@ public class RemoteButton {
         return rawIrPattern; //rawIrPattern;
     }
 
-    public String convertHexToBurstPairs(String hexPart, boolean isFirstPart) {
+    public String convertHexToBurstPairs(String hexPart, boolean isReverse) {
         // Translates NEC String to Raw IR pattern in hex type
         String burstPairs = "";
         int decValue = Integer.decode("0x" + hexPart);
@@ -77,7 +77,7 @@ public class RemoteButton {
         char[] binaryCharArr = binaryString.toCharArray();
 
         // Sent in Reverse Order e.g. 50 is 01010000 but send in IR as 00001010
-        if (isFirstPart){
+        if (isReverse==true){
             for (int i = binaryCharArr.length - 1; i >= 0; i--) {
                 switch (binaryCharArr[i]) {
                     case '0':
