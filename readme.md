@@ -36,9 +36,9 @@ https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
 - For the middle part, for ex.
 - you have 01FE C03F as device addr and cmd code
 - it is sent to IR receiver as 
-- 10000000 11111110  
-- 00000011 11110101 
-- take note first parts, 01 of device addr and C0 of cmd code are in reverse order
+- 10000000 01111111  
+- 00000011 11111100 
+- take note parts are sent in reverse order of bits instead of 00000001 for hex 1, its 10000000
 - 
 - but each bits is translated to pairs of milliseconds in the int[] array
 - if 0 then its 562 562
