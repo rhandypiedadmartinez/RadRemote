@@ -55,6 +55,7 @@ you can try by setting isReverse to true in the RemoteButton class, )
 -                ^    ^
 -               pulse,rest in microseconds
 
+So overall, leadin + NecessaryIR + leadout looks like int[] a = {9000,4500,562,562,562, 562, 1687,...,562,1687,562,379362}
 http://www.remotecentral.com/features/irdisp1.htm // page 1
 http://www.remotecentral.com/features/irdisp4.htm // page 4 about NEC IR format
 - This also contains a good explanation in a not-so complicated language, it has 4 pages don't overlook the other pages. 
