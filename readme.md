@@ -36,12 +36,20 @@ https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
   IR receivers is because it tolerates little offsets.
 - For the middle part, for ex.
 - you have 01FE C03F as device addr and cmd code
-- it is sent to IR receiver as 
+
+- 2 ways that it can be sent to IR receiver as 
+
+Not Reverse: (This works in my case)
+- 00000001 11111110
+- 11000000 00111111
+
+Reverse (based on resources but didnt work for me, 
+you can try by setting isReverse to false in the RemoteButton class )
 - 10000000 01111111  
 - 00000011 11111100 
-- take note parts are sent in reverse order of bits instead of 00000001 for hex 1, its 10000000
-- 
-- but each bits is translated to pairs of milliseconds in the int[] array rawIRpattern.
+
+
+- but each bits (binary digits) is translated to pairs of milliseconds in the int[] array rawIRpattern.
 - if 0 then its 562 562
 - if 1 then its 562 1687
 
