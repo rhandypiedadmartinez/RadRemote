@@ -38,10 +38,10 @@ public class RemoteButton {
 
         // Construct full String NEC
         unprocessedRawIR += this.leadIn
-                + convertHexToBurstPairs(deviceAddrFirstHalf,true)
-                + convertHexToBurstPairs(deviceAddrSecondHalf,true)
-                + convertHexToBurstPairs(commandCodeFirstHalf,true)
-                + convertHexToBurstPairs(commandCodeSecondHalf,true)
+                + convertHexToBurstPairs(deviceAddrFirstHalf,false)
+                + convertHexToBurstPairs(deviceAddrSecondHalf,false)
+                + convertHexToBurstPairs(commandCodeFirstHalf,false)
+                + convertHexToBurstPairs(commandCodeSecondHalf,false)
                 + this.leadOut;
 
         // Adds 0x to each values to signify hex values

@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/btnDecrypt"
-            android:layout_width="80sp"
+        android:layout_width="80sp"
         android:layout_height="80sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -17,7 +17,7 @@
         android:layout_marginEnd="10sp"
         android:layout_marginBottom="20sp"
         android:alpha="0.4"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -403,3 +403,4 @@ android:paddingTop="10sp">
 
 
 </GridLayout>
+-->
