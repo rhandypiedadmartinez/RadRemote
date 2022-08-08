@@ -16,8 +16,8 @@ You need a tested and working NEC Code (there are IR Finder apps available to
 know what codes work) or the hard way (use this project's backend to make your 
 own IR Finder HAHA).
 
-NEC Code has 2 parts DEVICE ADDRESS (e.g. "00FE") and COMMAND CODE (e.g. "50AF").
-You pass these two arguments to my RemoteButton's NEC converter then it will
+NEC IR Code has 2 parts DEVICE ADDRESS (e.g. "00FE") and COMMAND CODE (e.g. "50AF").
+You pass these two arguments to my RemoteButton class NEC converter then it will
 return int[] pattern you needed for IR transmit() method.
 If you happen to have only a half of the command code. 
 Calculate the complement of that such that its sum is FF.
