@@ -1,42 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ActivityHome">
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Command: "
-        android:textSize="15sp"
-        android:textColor="@color/black"
-        android:layout_margin="15dp"
-        tools:ignore="HardcodedText" />
-
-    <LinearLayout
-        android:id="@+id/layout_list"
+    <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        android:paddingBottom="100dp">
 
-        <Button
-            android:id="@+id/btn_add_ctrl"
-            android:background="@drawable/round"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Add"
-            tools:ignore="SpeakableTextPresentCheck"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="15dp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:drawableEnd="@drawable/ic_add"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp">
+
+                <TextView
+
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_weight="1"
+                    android:text="Button Name" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:text="Device Address" />
+
+                <TextView
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_weight="1"
+                    android:text="Command Code" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <Button
+                android:id="@+id/btn_add_ctrl"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/round"
+                android:drawableEnd="@drawable/ic_add"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="Add"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_baseline_settings_remote_24"
+            app:tint="@color/purple_500" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom|center"
+            android:layout_weight="1"
+            android:src="@drawable/ic_tvtimer"
+            app:tint="@color/purple_200" />
+
 
     </LinearLayout>
-</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

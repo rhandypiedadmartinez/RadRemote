@@ -1,9 +1,6 @@
-Project is just about to create its user interface
-Currently, only contains simple button that sends a sequence of 
-command codes e.g. {MENU,RIGHT,RIGHT, PRESS ... ETC} to adjust 
-the Pensonic Model LED-2224 TV's Offtime/sleep schedule so that you don't 
-have to suffer the painstaking pressing of a physical buttons.
-
+Project - Current Status:
+Activity Home -> Contains remote buttons, can add new commands
+MainActivity -> Not yet implemented, a TV sleep scheduler
 
 ----------------------------------------------------------------
 For Java and Kivy-Plyer Developers who have a hard time implementing 
@@ -14,10 +11,10 @@ it work and yet available resources are super complicated.
 You can just take a look at my RemoteButton class located in src files.
 You need a tested and working NEC Code (there are IR Finder apps available to
 know what codes work) or the hard way (use this project's backend to make your 
-own IR Finder HAHA).
+own IR Finder).
 
 NEC IR Code has 2 parts DEVICE ADDRESS (example, "00FE") and COMMAND CODE (example, "50AF").
-You pass these two arguments to my RemoteButton class NEC converter then it will
+You pass these two parameters to my RemoteButton class NEC converter then it will
 return int[] pattern you needed for IR transmit() method.
 If you happen to have only a half of the command code. 
 Calculate the complement of that such that its sum is FF.

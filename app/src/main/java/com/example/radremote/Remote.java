@@ -29,4 +29,8 @@ public class Remote {
     public int[] getPattern(String buttonName){
         return getRemoteButton(buttonName).rawIrPattern;
     }
+
+    public List<RemoteButton> getRemoteButtons() {
+        return remoteButtons;
+    }
 }

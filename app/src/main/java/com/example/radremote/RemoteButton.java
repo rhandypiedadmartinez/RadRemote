@@ -7,10 +7,11 @@ import java.util.List;
 
 public class RemoteButton {
     protected String buttonName;
-    protected String necCode;
     protected String strRawIrPattern;
     protected int[] rawIrPattern;
     protected String strFullIrRawInBits;
+    protected String deviceAddress;
+    protected String commandCode;
 
     protected static int frequency = 38222;
     protected static String leadIn = "0158 00AC ";          // signifies the start of IR pattern
@@ -20,8 +21,9 @@ public class RemoteButton {
 
     public RemoteButton(String buttonName, String deviceAddress, String commandCode) {
         this.buttonName = buttonName;
-        this.necCode = deviceAddress + commandCode;
         this.strFullIrRawInBits = "";
+        this.deviceAddress = deviceAddress;
+        this.commandCode = commandCode;
         rawIrPattern = convertNecToRaw(deviceAddress, commandCode);
     }
 
