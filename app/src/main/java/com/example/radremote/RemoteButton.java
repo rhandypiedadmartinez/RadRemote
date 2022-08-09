@@ -71,7 +71,13 @@ public class RemoteButton {
         String burstPairs = "";
         int decValue = Integer.decode("0x" + hexPart);
         String binaryString = Integer.toBinaryString(decValue);
-        binaryString = StringUtils.leftPad(binaryString, 8, '0');
+
+        if (isReverse == true){
+            binaryString = StringUtils.rightPad(binaryString, 8, '0');
+        } else {
+            binaryString = StringUtils.leftPad(binaryString, 8, '0');
+        }
+
         strFullIrRawInBits += binaryString + "\n";
 
         char[] binaryCharArr = binaryString.toCharArray();

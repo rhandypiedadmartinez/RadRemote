@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityHome">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Command: "
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_margin="15dp"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/layout_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_add_ctrl"
+            android:background="@drawable/round"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Add"
+            tools:ignore="SpeakableTextPresentCheck"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:drawableEnd="@drawable/ic_add"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+    </LinearLayout>
+</LinearLayout>
+

@@ -25,9 +25,4 @@ public class PensonicRemote extends Remote{
         super.addButton(new RemoteButton("LEFT","00FE", "DA25"));
         super.addButton(new RemoteButton("INPUTSRC","00FE","CA35"));
     }
-/*
-        remoteButtons.addButton();
-
-*/
-
 }
