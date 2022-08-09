@@ -2,7 +2,9 @@ package com.example.radremote;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.hardware.ConsumerIrManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,7 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
     ConsumerIrManager irblaster;
     LinearLayout layoutList;
     Button btnAdd;
+    ImageView btnOfftimeSchedulerActivity;
     List<String> teamList = new ArrayList<>();
     ScrollView scrollView;
 
@@ -32,25 +35,31 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
         layoutList = findViewById(R.id.layout_list);
         btnAdd = findViewById(R.id.btn_add_ctrl);
         btnAdd.setOnClickListener(this);
+        btnOfftimeSchedulerActivity = findViewById(R.id.btn_offtime_scheduler);
+        btnOfftimeSchedulerActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityHome.this, MainActivity.class));
+            }
+        });
         Remote myRemote = new PensonicRemote();
         preLoadRemote(myRemote);
     }
 
     private void preLoadRemote(Remote remote) {
         Iterator<RemoteButton> it = remote.getRemoteButtons().iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             RemoteButton control = it.next();
-            addView(control.buttonName,control.deviceAddress, control.commandCode);
+            addView(control.buttonName, control.deviceAddress, control.commandCode);
         }
         it = null;
         System.gc();
     }
 
     @Override
-    public void onClick(View view){
-        addView("","","");
-
-        addView("","","");
+    public void onClick(View view) {
+        addView("", "", "");
+        scrollView.fullScroll(View.FOCUS_DOWN);
     }
 
     private boolean addView(String controlName, String deviceAddress, String commandCode) {
@@ -77,7 +86,7 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
                     control = null;
                     System.gc();
                     Toast.makeText(ActivityHome.this, "IR Transmitted", Toast.LENGTH_SHORT).show();
-                } catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(ActivityHome.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
                 }
                 //removeView(controlView);
@@ -90,7 +99,7 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void removeView(View view){
+    private void removeView(View view) {
         layoutList.removeView(view);
     }
 }
