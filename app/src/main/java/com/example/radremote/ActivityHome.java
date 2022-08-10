@@ -39,7 +39,7 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
         btnOfftimeSchedulerActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ActivityHome.this, MainActivity.class));
+                startActivity(new Intent(ActivityHome.this, ActivitySleepScheduler.class));
             }
         });
         Remote myRemote = new PensonicRemote();
