@@ -42,7 +42,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:orientation="horizontal"
-        app:flow_verticalBias="0.5"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -100,6 +100,41 @@
         </ScrollView>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SETTINGS"
+        app:layout_constraintBottom_toTopOf="@id/tvCurrentOffTime"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="55dp"
+        android:textSize="14sp"/>
+
+    <Switch
+        android:id="@+id/btnSync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trasmitter Switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSettings"
+        android:layout_marginTop="15sp"
+        android:layout_marginEnd="55dp"
+        android:checked="true"
+        android:textSize="16sp"
+        android:textColor="@color/purple_500"/>
+
+    <TextView
+    
+        android:id="@+id/tvCurrentOffTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvScrollStats"

@@ -27,10 +27,11 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import android.widget.Switch;
 
 
 public class ActivitySleepScheduler extends AppCompatActivity {
-    //ConsumerIrManager irblaster;
+    ConsumerIrManager irblaster;
     LinearLayout layoutListHours;
     LinearLayout layoutListMins;
     ScrollView scrollViewHours;
@@ -42,22 +43,49 @@ public class ActivitySleepScheduler extends AppCompatActivity {
     GestureDetector gestureDetector;
     ListView listView;
     ListView listView2;
-
+    TextView tvTimeDisplay;
+    Switch transmitterSwitch;
     Runnable scrollerTask;
 
+    int sleepSettingsMarker;
     int count;
     int x1;
     int x2;
     int x3;
     int x4;
 
+    int offTimeHour;
+    int offTimeMinute;
+    int oldOffTimeHour;
+    int oldOffTimeMinute;
+    
+    int[] LEFT;
+    int[] RIGHT;
+    int[] DOWN;
+    int[] UP;
+    
+    Button btnSettings;
+    Remote pensonicRemote;
+    boolean transSwitch;
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleepscheduler);
         try {
+            transmitterSwitch = findViewById(R.id.btnSync);
+            transSwitch = true;
+            oldOffTimeHour = 0;
+            oldOffTimeMinute = 0;
+            sleepSettingsMarker = 0;
+            pensonicRemote = new PensonicRemote(); // For Model 2424 or 2244
+	    UP = pensonicRemote.getPattern("UP");
+	    DOWN = pensonicRemote.getPattern("DOWN");
+	    RIGHT = pensonicRemote.getPattern("RIGHT");
+	    LEFT = pensonicRemote.getPattern("LEFT");
+	    
 
+            tvTimeDisplay = findViewById(R.id.tvCurrentOffTime);
             isScrolling = false;
 
             tvTest = findViewById(R.id.tvScrollStats);
@@ -71,12 +99,27 @@ public class ActivitySleepScheduler extends AppCompatActivity {
             gestureDetector = new GestureDetector(this, new MyGestureListener());
             scrollViewHours.setOnTouchListener(touchlistener);
 
-            //irblaster = (ConsumerIrManager) getSystemService(CONSUMER_IR_SERVICE);
+            irblaster = (ConsumerIrManager) getSystemService(CONSUMER_IR_SERVICE);
 
             layoutListHours = findViewById(R.id.layout_hours);
             layoutListMins = findViewById(R.id.layout_mins);
 
 
+            btnSettings = findViewById(R.id.btnSettings);
+            
+            
+            btnSettings.setOnClickListener(settingsListener);
+            
+            transmitterSwitch.setOnClickListener(new View.OnClickListener(){
+            	@Override
+            	public void onClick(View view){
+            		transSwitch = !transSwitch;
+            		
+            		//Toast.makeText(ActivitySleepScheduler.this, String.valueOf(transSwitch), Toast.LENGTH_SHORT).show();
+            		
+            	}
+            
+            });
             //  preloadHours();
             btnHome = findViewById(R.id.btn_home);
             btnHome.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +246,30 @@ public class ActivitySleepScheduler extends AppCompatActivity {
 
     }
 
+      View.OnClickListener settingsListener = new View.OnClickListener(){
+            	@Override
+            	public void onClick(View view){
+            	if (transSwitch){
+            	
+            	try{
+                    String[] commandSequence = {"EXIT", "MENU", "RIGHT", "RIGHT", "DOWN","DOWN","CLICK","DOWN"};
+                    List<String> commandSequenceForChangingOffTime = new ArrayList<String>();
+                    
+                        for (String command: commandSequence){
+                            irblaster.transmit(38222, pensonicRemote.getPattern(command));
+                        }
+                    } catch (Exception e){
+                        Toast.makeText(ActivitySleepScheduler.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+                    } finally {
+                    }
+                
+            	
+            	}
+            	    
+            		//Toast.makeText(ActivitySleepScheduler.this, "Button Works", Toast.LENGTH_SHORT).show();
+            		
+            	} 
+       };
 
     AbsListView.OnScrollListener abs = new AbsListView.OnScrollListener() {
         @Override
@@ -210,6 +277,7 @@ public class ActivitySleepScheduler extends AppCompatActivity {
             int ci = 0;
             switch (scrollstate) {
                 case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                
                     //if (tvTest.getText().equals("fling")) {
                     //}
                     //tvTest.setText("idle");
@@ -238,8 +306,36 @@ public class ActivitySleepScheduler extends AppCompatActivity {
                         } else if (tvTest.getText().equals("fling")) {
                             listView.setSelection(x1);
                         }
-
-
+                        
+                        
+                        if (transSwitch){
+                         
+                        try{
+                        if (sleepSettingsMarker == 0){
+                        
+                        	    irblaster.transmit(38222, DOWN);
+                        	    sleepSettingsMarker = 1;
+                        }
+                        for(int i=oldOffTimeMinute; i!=offTimeMinute;){
+                        	if (oldOffTimeMinute < offTimeMinute){
+                        	    irblaster.transmit(38222, RIGHT);
+                        	    i++;
+                        	} 
+                        	if (oldOffTimeMinute > offTimeMinute){
+                        	    irblaster.transmit(38222, LEFT);
+                        	    i--;
+                        	}
+                        }
+			} catch(Exception e){
+				Toast.makeText(ActivitySleepScheduler.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+			}
+                        
+                        
+                        
+                        }
+                       
+			oldOffTimeMinute = offTimeMinute;
+			
                         tvTest.setText(String.valueOf(String.valueOf(x1)));
 
 
@@ -283,7 +379,7 @@ public class ActivitySleepScheduler extends AppCompatActivity {
 
 
         @Override
-        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+        public void onScroll(AbsListView absListView, int minute, int i1, int i2) {
             listView.getChildAt(0);
             //if (tvTest.getText().equals("idle")){
             //	tvTest.setText("YES");
@@ -292,9 +388,13 @@ public class ActivitySleepScheduler extends AppCompatActivity {
             //tvTest.setText(String.valueOf(i) + " " +String.valueOf(i1) + " " + String.valueOf(i2));
             count = i1;
             //}
+            
+            tvTimeDisplay.setText(StringUtils.leftPad(String.valueOf(offTimeHour),2,"0") + ":" + StringUtils.leftPad(String.valueOf(offTimeMinute),2,"0"));
 
             try {
                 if (listView.getChildAt(0).getTop() < -90) {
+                
+            offTimeMinute = minute + 1;
                     //  TextView tv = listView.getChildAt(0).findViewById(R.id.tv_row_timevalues);
                     //  tv.setTextColor(getResources().getColor(R.color.gray));
 
@@ -308,6 +408,7 @@ public class ActivitySleepScheduler extends AppCompatActivity {
                 } else {
 
 
+            offTimeMinute = minute;
                     //TextView tv = listView.getChildAt(0).findViewById(R.id.tv_row_timevalues);
                     //  tv.setTextColor(getResources().getColor(R.color.gray));
 
@@ -358,6 +459,31 @@ public class ActivitySleepScheduler extends AppCompatActivity {
                             listView2.setSelection(x3);
                         }
 
+
+                        if (transSwitch){
+                        try{
+                        
+                        if (sleepSettingsMarker == 1){
+                        	    irblaster.transmit(38222, UP);
+                        	    sleepSettingsMarker = 0;
+                        }
+                        
+                        for(int i=oldOffTimeHour; i!=offTimeHour;){
+                        	if (oldOffTimeHour < offTimeHour){
+                        	    irblaster.transmit(38222, RIGHT);
+                        	    i++;
+                        	} 
+                        	if (oldOffTimeHour > offTimeHour){
+                        	    irblaster.transmit(38222, LEFT);
+                        	    i--;
+                        	}
+                        }
+			} catch(Exception e){
+				Toast.makeText(ActivitySleepScheduler.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+			}
+			}
+			oldOffTimeHour = offTimeHour;
+			
                         listView2.setOnScrollListener(abs2);
 
                         tvTest2.setText(String.valueOf(String.valueOf(x3)));
@@ -396,15 +522,19 @@ public class ActivitySleepScheduler extends AppCompatActivity {
 
 
         @Override
-        public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+        public void onScroll(AbsListView absListView, int hour, int i1, int i2) {
             //if (tvTest.getText().equals("idle")){
             //	tvTest.setText("YES");
             //}
             //if (tvTest.getText().equals("idle")){
             //tvTest.setText(String.valueOf(i) + " " +String.valueOf(i1) + " " + String.valueOf(i2));
+           
+
             count = i1;
+            tvTimeDisplay.setText(StringUtils.leftPad(String.valueOf(offTimeHour),2,"0") + ":" + StringUtils.leftPad(String.valueOf(offTimeMinute),2,"0"));
             try {
-                if (listView2.getChildAt(0).getTop() < -90) {
+                if (listView2.getChildAt(0).getTop() < -90) {        
+	            offTimeHour = hour+1;
                     //  TextView tv = listView2.getChildAt(0).findViewById(R.id.tv_row_timevalues);
                     //  tv.setTextColor(getResources().getColor(R.color.gray));
 
@@ -417,6 +547,7 @@ public class ActivitySleepScheduler extends AppCompatActivity {
 
                 } else {
 
+                   offTimeHour = hour;
 
                     //TextView tv = listView2.getChildAt(0).findViewById(R.id.tv_row_timevalues);
                     //  tv.setTextColor(getResources().getColor(R.color.gray));

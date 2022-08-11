@@ -26,11 +26,15 @@
             </intent-filter>
         </activity>
         <activity
+        
+            android:windowSoftInputMode="adjustNothing"
             android:name=".MainActivity"
             android:exported="true">
         </activity>
 
         <activity
+        
+            android:windowSoftInputMode="adjustNothing"
             android:name=".ActivityHome"
             android:exported="true">
         </activity>

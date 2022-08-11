@@ -85,7 +85,7 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
                     // destruct object
                     control = null;
                     System.gc();
-                    Toast.makeText(ActivityHome.this, "IR Transmitted", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(ActivityHome.this, "IR Transmitted", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Toast.makeText(ActivityHome.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
                 }
