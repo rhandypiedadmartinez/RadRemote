@@ -1,7 +1,9 @@
 Project - Current Status:
-Activity Home -> Contains remote buttons, can add new commands
-MainActivity -> Not yet implemented, a TV sleep scheduler
+HomeActivity -> Contains remote buttons for Pensonic LED-2424 & LED-2224, 
+can only add new views, but doesn't work, 
+Edit NEC IR values in Pensonic class instead
 
+SleepSchedulerActivity -> Fixed code only works for Pensonic TV Model 2424
 ----------------------------------------------------------------
 For Java and Kivy-Plyer Developers who have a hard time implementing 
 transmit(freq,pattern) method from class ConsumerIRManagers (Java) 

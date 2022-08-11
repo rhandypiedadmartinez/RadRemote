@@ -75,23 +75,8 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
         etCommandCode.setText(commandCode);
 
         ImageView imgTransmit = (ImageView) controlView.findViewById(R.id.img_transmit);
-        imgTransmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    RemoteButton control = new RemoteButton(controlName, deviceAddress, commandCode);
-                    irblaster.transmit(38000, control.rawIrPattern);
-
-                    // destruct object
-                    control = null;
-                    System.gc();
-                   // Toast.makeText(ActivityHome.this, "IR Transmitted", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Toast.makeText(ActivityHome.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
-                }
-                //removeView(controlView);
-            }
-        });
+       
+        setOnClick(imgTransmit, controlName,deviceAddress ,commandCode);
 
         layoutList.addView(controlView);
 
@@ -102,4 +87,46 @@ public class ActivityHome extends AppCompatActivity implements View.OnClickListe
     private void removeView(View view) {
         layoutList.removeView(view);
     }
+
+    public void setOnClick(ImageView btn, String controlName, String deviceAddress, String commandCode){
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            String str= controlName + deviceAddress + commandCode;
+            if (str.equals(""))
+                Toast.makeText(ActivityHome.this, "Edit Pensonic class instead/Wrong implementation soryy", Toast.LENGTH_SHORT).show();
+            
+            
+             try {
+                RemoteButton control = new RemoteButton(controlName, deviceAddress, commandCode);
+                irblaster.transmit(38000, control.rawIrPattern);
+
+                // destruct object
+                //control = null;
+                System.gc();
+                // Toast.makeText(ActivityHome.this, "IR Transmitted", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(ActivityHome.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+            }
+            }
+        });
+    };
+
+    View.OnClickListener btnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            try {
+                //RemoteButton control = new RemoteButton(controlName, deviceAddress, commandCode);
+               // irblaster.transmit(38000, control.rawIrPattern);
+
+                // destruct object
+                //control = null;
+                System.gc();
+                // Toast.makeText(ActivityHome.this, "IR Transmitted", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(ActivityHome.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+            }
+            //removeView(controlView);
+        }
+    };
 }
