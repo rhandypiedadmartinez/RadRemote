@@ -32,6 +32,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_tvtimer"
             app:tint="@color/purple_500" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -49,30 +50,46 @@
             android:layout_width="0sp"
             android:layout_height="260dp"
             android:layout_weight="1"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
                 android:id="@+id/layout_hours"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"/>
         </ScrollView>
 
         <ScrollView
             android:id="@+id/scrollview_mins"
             android:layout_width="0sp"
+            android:layout_height="260dp"
             android:layout_weight="1"
             android:scrollbars="none"
-            android:layout_height="260dp">
+            tools:ignore="SpeakableTextPresentCheck">
+
             <LinearLayout
                 android:id="@+id/layout_mins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
+                android:orientation="vertical"/>
 
         </ScrollView>
 
     </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tvScrollStats"/>
+
+    <TextView
+        android:id="@+id/tvScrollStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Test"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
